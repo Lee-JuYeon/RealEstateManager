@@ -1,5 +1,6 @@
 package com.cavss.realestatemanager.ui.view.checklist.item.contents
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -45,19 +46,25 @@ fun ChecklistCheck(
                 .size(checkBoxSize, checkBoxSize)
                 .clickable {
                     isChecked.value = !isChecked.value
+                    when(isChecked.value){
+                        true -> {
+
+                        }
+                        false -> {
+
+                        }
+                    }
                 }
+                .padding(
+                    all = checkBoxSize / 4
+                )
+                .clip(RoundedCornerShape(5.dp))
+                .border(
+                    1.dp,
+                    Color.Black,
+                    RoundedCornerShape(5.dp)
+                )
         ) {
-            Box(
-                modifier = Modifier
-                    .size(checkBoxSize - 18.dp, checkBoxSize - 18.dp)
-                    .clip(RoundedCornerShape(5.dp))
-                    .border(
-                        1.dp,
-                        Color.Black,
-                        RoundedCornerShape(5.dp)
-                    )
-                    .align(Alignment.Center)
-            )
             if (isChecked.value){
                 Icon(
                     imageVector = Icons.Filled.Check,
@@ -72,7 +79,7 @@ fun ChecklistCheck(
         Text(
             text = check,
             color = Color.Black,
-            fontSize = 20.sp,
+            fontSize = 25.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .padding(
