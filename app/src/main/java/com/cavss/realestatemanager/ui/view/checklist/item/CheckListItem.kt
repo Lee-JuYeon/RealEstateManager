@@ -19,10 +19,11 @@ import androidx.compose.ui.unit.dp
 import com.cavss.realestatemanager.model.CheckListModel
 import com.cavss.realestatemanager.ui.view.checklist.item.contents.ChecklistCheck
 import com.cavss.realestatemanager.ui.view.checklist.item.contents.ChecklistDoubtSituation
+import com.cavss.realestatemanager.ui.view.checklist.item.contents.ChecklistRelativeTrick
 import com.cavss.realestatemanager.ui.view.checklist.item.contents.ChecklistTargetView
 
 @Composable
-fun CheckListItem(model : CheckListModel){
+fun CheckListItem(model : CheckListModel, index : Int ){
     val isExpandable = remember { mutableStateOf(false) }
     Column(
         verticalArrangement = Arrangement.Top,
@@ -49,6 +50,7 @@ fun CheckListItem(model : CheckListModel){
 
         if (isExpandable.value){
             ChecklistDoubtSituation(doubtSituation = model.doubtSituation)
+            ChecklistRelativeTrick(relativeTricks = model.trick)
             ChecklistTargetView(targetList = model.target)
 
         }
