@@ -23,18 +23,10 @@ fun ChecklistDoubtSituation(doubtSituation : List<String>) {
         horizontalAlignment = Alignment.Start,
         modifier = Modifier
             .padding(
-                start = 10.dp,
+                start = 30.dp,
                 end = 5.dp
             )
     ) {
-        Text(
-            text = "🤔 ${stringResource(id = R.string.checkList_doubtSituationTitle)}",
-            fontSize = 23.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier
-        )
-
         doubtSituation.forEachIndexed { index : Int, situation : String->
             Text(
                 text = "${index + 1}. ${situation}",
@@ -43,8 +35,6 @@ fun ChecklistDoubtSituation(doubtSituation : List<String>) {
                 color = Color.Black,
                 modifier = Modifier
                     .padding(
-                        start = 10.dp,
-                        end = 5.dp,
                         top = 3.dp
                     )
             )
