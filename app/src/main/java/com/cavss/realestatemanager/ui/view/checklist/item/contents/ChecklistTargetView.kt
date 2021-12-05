@@ -3,6 +3,7 @@ package com.cavss.realestatemanager.ui.view.checklist.item.contents
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -26,18 +27,8 @@ fun ChecklistTargetView(targetList : List<String>){
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .padding(
-                start = 10.dp
-            )
+            .padding(start = 30.dp)
     ) {
-        item {
-            Text(
-                text = stringResource(id = R.string.checkList_targetTitle),
-                color = Color.Black,
-                fontSize = 25.sp,
-                fontWeight = FontWeight.ExtraBold
-            )
-        }
         items(targetList){ targets ->
             Text(
                 text = targets,
@@ -46,8 +37,9 @@ fun ChecklistTargetView(targetList : List<String>){
                 fontSize = 18.sp,
                 modifier = Modifier
                     .padding(
-                        vertical = 5.dp,
-                        horizontal = 10.dp
+                        top = 5.dp,
+                        bottom = 5.dp,
+                        end = 5.dp
                     )
                     .clip(RoundedCornerShape(10.dp))
                     .border(
