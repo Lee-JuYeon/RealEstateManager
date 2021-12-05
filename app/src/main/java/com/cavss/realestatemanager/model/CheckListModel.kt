@@ -7,5 +7,6 @@ data class CheckListModel(
     val target : List<String>,
     val doubtSituation : List<String>,
     val relativeLaw : List<String>,
+    val images : List<String>
 ) {
 }
