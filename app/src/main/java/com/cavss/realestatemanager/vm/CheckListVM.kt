@@ -5,7 +5,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.cavss.realestatemanager.model.CheckListModel
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class CheckListVM : ViewModel() {
     private val _checkList = MutableLiveData<List<CheckListModel>>()
@@ -13,16 +19,22 @@ class CheckListVM : ViewModel() {
     val getCheckList : LiveData<List<CheckListModel>>
         get() = _checkList
 
-    private val _checkItem = mutableStateOf(
-        MutableList(_checkList.value?.size ?: mutableListOf<Boolean>().size) { _ ->
-            false
-        })
-    val getCheckItem : State<MutableList<Boolean>> = _checkItem
-    fun setCheckItemAll(list : MutableList<Boolean>) { _checkItem.value = list }
-    fun setCheckItem(index : Int, change : Boolean){ _checkItem.value[index] = change }
+    private val _checkItem : MutableStateFlow<MutableList<Boolean>> = MutableStateFlow(mutableListOf<Boolean>())
+    val getCheckItem : StateFlow<MutableList<Boolean>> = _checkItem
+    fun setCheckItemAll(list : MutableList<Boolean>) {
+        viewModelScope.launch {
+            _checkItem.value = list
+        }
+    }
+    fun setCheckItem(index : Int, change : Boolean){
+        viewModelScope.launch {
+            _checkItem.value[index] = change
+        }
+    }
 
     init {
         setCheckList(list = dummyCheckList())
+        setCheckItemAll(list = MutableList(_checkList.value?.size ?: 0){ _ -> false})
     }
 
     private fun dummyCheckList() : List<CheckListModel>{
