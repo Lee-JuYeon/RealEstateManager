@@ -74,16 +74,19 @@ class CheckListVM : ViewModel() {
                     "깨끗한 신축빌라에 전액대출이 가능한 꿀같은 집"
                 ),
                 relativeLaw = listOf("제 3자와의 관계에서 수탁자(신탁회사)가 소유권자가 되며, 집주인은 무권한자에 불과함."),
-                check = "이걸 쳋크해야함",
+                check = "등기부에 '수탁자 xx신탁회사' 라고 기재되어있나요?",
                 images = listOf("","","","","","","")
             ),
             CheckListModel(
-                type = listOf("매매"),
+                type = listOf("전세"),
                 target = listOf("타겟1", "타겟2"),
                 trick = listOf("전입신고의 허점"),
-                doubtSituation = listOf("",""),
+                doubtSituation = listOf(
+                    "전세 만료 기간이 다가오자 잠적한 집주인은 외국인 또는 이종국자라 잡기가 굉장히 힘들다.",
+                    ""
+                ),
                 relativeLaw = listOf("법1", "법2"),
-                check = "이걸 쳋크해야함",
+                check = "집주인이 혹시 외국인 또는 이중국적자이거나 등기부등본상 해외에 거주하고 있나요?",
                 images = listOf("","","","","","","")
             ),
             CheckListModel(

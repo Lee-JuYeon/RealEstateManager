@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 enum class BottomSheetType(val rawValue : String){
@@ -18,6 +19,11 @@ class MainVM : ViewModel() {
     fun setBottomSheet(list : BottomSheetType){
         viewModelScope.launch {
             _bottomSheet.value = list
+        }
+        viewModelScope.launch {
+            _bottomSheet.collect {  type ->
+
+            }
         }
     }
     val getBottomSheet : StateFlow<BottomSheetType>

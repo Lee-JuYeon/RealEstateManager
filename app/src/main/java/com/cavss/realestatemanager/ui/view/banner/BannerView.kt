@@ -2,24 +2,27 @@ package com.cavss.realestatemanager.ui.view.banner
 
 import android.Manifest
 import android.util.Log
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.Observer
 import com.cavss.realestatemanager.R
-import com.cavss.realestatemanager.ui.custom.adview.CustomAdView
-import com.cavss.realestatemanager.ui.custom.adview.CustomAdViewType
 import com.cavss.realestatemanager.util.internet.InternetManager
 import com.cavss.realestatemanager.util.permission.PermissionRequestView
 
@@ -40,6 +43,11 @@ fun BannerView(height : Dp) {
                 modifier = customModifier
                     .fillMaxWidth()
                     .height(height)
+                    .border(
+                        1.dp,
+                        Color.Black,
+                        RectangleShape
+                    )
             )
         },
         requestLaterView = { customModifier : Modifier ->
@@ -52,6 +60,11 @@ fun BannerView(height : Dp) {
                 modifier = customModifier
                     .fillMaxWidth()
                     .height(height)
+                    .border(
+                        1.dp,
+                        Color.Black,
+                        RectangleShape
+                    )
             )
         },
         canNotUseView = {
@@ -64,15 +77,24 @@ fun BannerView(height : Dp) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(height)
+                    .border(
+                        1.dp,
+                        Color.Black,
+                        RectangleShape
+                    )
+                    .clickable {
+                        // 인터넷없음 광고문의 팝업뷰
+                    }
             )
         },
         grantedView = {
+            val isNetworking = remember { mutableStateOf(false) }
             val internetManager = InternetManager(LocalContext.current)
             internetManager.observe(LocalLifecycleOwner.current){ isConnect ->
-//                Log.e("mException", "is connection ? : ${isConnect}")
+                isNetworking.value = isConnect
             }
 
-            if (internetManager.value == true){
+            if (isNetworking.value){
                 Text(
                     text = "연결연결",
                     color = Color.Black,
@@ -82,6 +104,14 @@ fun BannerView(height : Dp) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(height)
+                        .border(
+                            1.dp,
+                            Color.Black,
+                            RectangleShape
+                        )
+                        .clickable {
+                            // 광고문의 + 광고 팝업뷰 생성
+                        }
                 )
             }else{
                 Text(
@@ -93,26 +123,16 @@ fun BannerView(height : Dp) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(height)
+                        .border(
+                            1.dp,
+                            Color.Black,
+                            RectangleShape
+                        )
+                        .clickable {
+                            // 인터넷없음 광고문의 팝업뷰
+                        }
                 )
             }
-//            if (internetManager.observeAsState().value != false){
-//                CustomAdView(
-//                    height = height,
-//                    location = null,
-//                    typeCustom = CustomAdViewType.IMAGE
-//                )
-//            }else{
-//                Text(
-//                    text = stringResource(id = R.string.adview_noInternet),
-//                    color = Color.Black,
-//                    fontWeight = FontWeight.ExtraBold,
-//                    fontSize = 25.sp,
-//                    textAlign = TextAlign.Center,
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .height(height)
-//                )
-//            }
         },
         deniedView = { deniedReason : String ->
             Text(
@@ -124,6 +144,11 @@ fun BannerView(height : Dp) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(height)
+                    .border(
+                        1.dp,
+                        Color.Black,
+                        RectangleShape
+                    )
             )
         }
     )

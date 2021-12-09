@@ -14,10 +14,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import com.cavss.realestatemanager.vm.MainVm
+import com.cavss.realestatemanager.vm.MainVM
 
 @Composable
-fun BottomSheetView(mainVM : MainVm) {
+fun BottomSheetView(mainVM : MainVM) {
 
     val screenSize = LocalConfiguration.current
     val screenWidth = screenSize.screenWidthDp.dp

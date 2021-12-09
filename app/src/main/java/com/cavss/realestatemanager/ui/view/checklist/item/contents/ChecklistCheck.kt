@@ -1,5 +1,6 @@
 package com.cavss.realestatemanager.ui.view.checklist.item.contents
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -22,11 +23,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cavss.realestatemanager.R
+import com.cavss.realestatemanager.vm.CheckListVM
 
 @Composable
 fun ChecklistCheck(
     check : String,
-    isExpandable : MutableState<Boolean>
+    isExpandable : MutableState<Boolean>,
+    checkListVM: CheckListVM,
+    index : Int
 ){
 
     val isChecked = remember { mutableStateOf(false) }
@@ -46,14 +50,10 @@ fun ChecklistCheck(
                 .size(checkBoxSize, checkBoxSize)
                 .clickable {
                     isChecked.value = !isChecked.value
-                    when(isChecked.value){
-                        true -> {
-
-                        }
-                        false -> {
-
-                        }
-                    }
+                    checkListVM.setCheckItem(
+                        index = index,
+                        change = isChecked.value
+                    )
                 }
                 .padding(
                     all = checkBoxSize / 4
