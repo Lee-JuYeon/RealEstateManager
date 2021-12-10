@@ -12,7 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import com.cavss.realestatemanager.ui.theme.RealEstateManagerTheme
 import com.cavss.realestatemanager.ui.custom.bottomsheet.BottomSheetView
+import com.cavss.realestatemanager.ui.custom.popup.PopUpContainer
+import com.cavss.realestatemanager.ui.custom.popup.PopUpVM
 import com.cavss.realestatemanager.ui.view.checklist.CheckListView
+import com.cavss.realestatemanager.ui.view.main.MainView
 import com.cavss.realestatemanager.vm.CheckListVM
 import com.cavss.realestatemanager.vm.MainVM
 
@@ -20,6 +23,8 @@ class MainActivity : ComponentActivity() {
 
     private val checkListVM by viewModels<CheckListVM>()
     private val mainVM by viewModels<MainVM>()
+    private val popupVM by viewModels<PopUpVM>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,16 +40,13 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxSize()
                     ) {
-                        Column(
-                            verticalArrangement = Arrangement.Top,
-                            horizontalAlignment = Alignment.Start,
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(colorResource(id = R.color.background))
-                        ) {
-                            CheckListView(checkListVM)
-                        }
+                        MainView(
+                            mainVM = mainVM,
+                            popupVM = popupVM,
+                            checkListVM = checkListVM
+                        )
                         BottomSheetView(mainVM)
+                        PopUpContainer(popupVM = popupVM)
                     }
                 }
             }
