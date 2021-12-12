@@ -2,31 +2,26 @@ package com.cavss.realestatemanager.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.cavss.realestatemanager.ui.custom.popup.PopUpType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-enum class BottomSheetType(val rawValue : String){
-    CHECKLIST_RELATIVE_PHOTO(rawValue = "CHECKLIST_RELATIVE_PHOTO"),
-    CHECKLIST_SHARE(rawValue = "CHECKLIST_SHARE")
-}
 
 class MainVM : ViewModel() {
 
-    private val _bottomSheet = MutableStateFlow<BottomSheetType>(BottomSheetType.CHECKLIST_RELATIVE_PHOTO)
-    fun setBottomSheet(list : BottomSheetType){
-        viewModelScope.launch {
-            _bottomSheet.value = list
-        }
+    private val _bottomSheet = MutableStateFlow<PopUpType>(PopUpType.NONE)
+    fun setBottomSheet(list : PopUpType){
         viewModelScope.launch {
             _bottomSheet.collect {  type ->
 
             }
         }
     }
-    val getBottomSheet : StateFlow<BottomSheetType>
+
+    val getBottomSheet : StateFlow<PopUpType>
         get() = _bottomSheet
 
 
