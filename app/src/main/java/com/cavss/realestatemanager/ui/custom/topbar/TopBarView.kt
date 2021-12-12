@@ -1,6 +1,8 @@
 package com.cavss.realestatemanager.ui.custom.topbar
 
+import android.content.Context
 import android.util.Log
+import android.view.WindowManager
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -16,6 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -33,51 +37,65 @@ import com.cavss.realestatemanager.vm.MainVM
 fun TopBarView(
     height : Dp,
     topbarVM : TopBarVM,
-    popupVM : PopUpVM
+    popupVM : PopUpVM,
+    backgroundColour : Color
 ) {
 
     val lifeCycleOwner = LocalLifecycleOwner.current
-    LazyRow(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start,
+
+    Column(
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.Start,
         modifier = Modifier
-            .fillMaxWidth()
-            .height(height)
-            .drawBehind {
-                drawLine(
-                    color = Color.Black,
-                    start = Offset(0f, 0f),
-                    end = Offset(x = Float.MAX_VALUE, y = 0f),
-                    strokeWidth = 5f
-                )
-            },
-        content = {
-            topbarVM.getTopBarList.observe(lifeCycleOwner){ list ->
-                items(list){ model ->
-                    Text(
-                        text = stringResource(id = model.itemTitle),
-                        color = Color.Black,
-                        fontWeight = FontWeight.ExtraBold,
-                        fontSize = 25.sp,
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .padding(
-                                horizontal = 10.dp,
-                                vertical = 5.dp
-                            )
-                            .clickable {
-                                when (model.itemType) {
-                                    TopBarType.NOTIFY -> {
-                                        popupVM.setPopUpType(PopUpType.TOPBAR_NOTIFY)
-                                    }
-                                    TopBarType.CONTACTUS -> {
-                                        popupVM.setPopUpType(PopUpType.TOPBAR_CONTACT)
+            .background(backgroundColour.copy(0.1f))
+    ) {
+        LazyRow(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start,
+            modifier = Modifier
+                .height(height),
+            content = {
+                topbarVM.getTopBarList.observe(lifeCycleOwner){ list ->
+                    items(list){ model ->
+                        Text(
+                            text = stringResource(id = model.itemTitle),
+                            color = Color.Black,
+                            fontWeight = FontWeight.ExtraBold,
+                            fontSize = 25.sp,
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .padding(
+                                    horizontal = 10.dp,
+                                    vertical = 5.dp
+                                )
+                                .clickable {
+                                    when (model.itemType) {
+                                        TopBarType.NOTIFY -> {
+                                            Log.e("mException","topbar PopUpType.CHECKLIST_ITEM_IMAGE")
+                                            popupVM.setPopUpType(PopUpType.CHECKLIST_ITEM_IMAGE)
+                                        }
+                                        TopBarType.CONTACTUS -> {
+                                            popupVM.setPopUpType(PopUpType.TOPBAR_CONTACT)
+                                        }
                                     }
                                 }
-                            }
-                    )
+                        )
+                    }
                 }
             }
-        }
-    )
+        )
+        Canvas(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(1.dp),
+            onDraw = {
+                drawLine(
+                    color = Color.Black,
+                    start = Offset(x = 0f, y = 1f),
+                    end = Offset(x = 900729f, y = 1f),
+                    strokeWidth = 1f
+                )
+            }
+        )
+    }
 }
