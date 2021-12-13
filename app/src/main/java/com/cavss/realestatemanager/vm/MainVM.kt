@@ -1,8 +1,11 @@
 package com.cavss.realestatemanager.vm
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cavss.realestatemanager.ui.custom.popup.PopUpType
+import com.cavss.realestatemanager.ui.custom.topbar.TopBarModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -11,6 +14,13 @@ import kotlinx.coroutines.launch
 
 
 class MainVM : ViewModel() {
+    private val _topbarList = MutableLiveData<List<TopBarModel>>(TopBarModel.TOPBAR_LIST.mainList)
+    fun setTopBarList(list : List<TopBarModel>){
+        _topbarList.postValue(list)
+    }
+    val getTopBarList : LiveData<List<TopBarModel>>
+        get() = _topbarList
+
 
     private val _bottomSheet = MutableStateFlow<PopUpType>(PopUpType.NONE)
     fun setBottomSheet(list : PopUpType){
@@ -25,7 +35,12 @@ class MainVM : ViewModel() {
         get() = _bottomSheet
 
 
-
+    private val _bottomSheetShows = MutableLiveData<Boolean>(false)
+    fun setBottomSheetShows(isShowing : Boolean){
+        _bottomSheetShows.postValue(isShowing)
+    }
+    val getBottomSheetShows : LiveData<Boolean>
+        get() = _bottomSheetShows
 }
 
 /*
