@@ -44,7 +44,7 @@ fun PopUpContainer(
 
             }
             PopUpType.CHECKLIST_ITEM_IMAGE -> {
-함
+
             }
             PopUpType.NONE -> {
                 Log.e("mException","${popupVM.getPopUpType.value} : none")
