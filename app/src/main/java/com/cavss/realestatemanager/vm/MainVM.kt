@@ -34,11 +34,13 @@ class MainVM : ViewModel() {
     val getBottomSheet : StateFlow<PopUpType>
         get() = _bottomSheet
 
+    private val _bottomSheetType = MutableLiveData<PopUpType>()
+    fun setBottomSheetType(type : PopUpType){ _bottomSheetType.postValue(type) }
+    val getBottomSheetType : LiveData<PopUpType>
+        get() = _bottomSheetType
 
     private val _bottomSheetShows = MutableLiveData<Boolean>(false)
-    fun setBottomSheetShows(isShowing : Boolean){
-        _bottomSheetShows.postValue(isShowing)
-    }
+    fun setBottomSheetShows(isShowing : Boolean){ _bottomSheetShows.postValue(isShowing) }
     val getBottomSheetShows : LiveData<Boolean>
         get() = _bottomSheetShows
 }

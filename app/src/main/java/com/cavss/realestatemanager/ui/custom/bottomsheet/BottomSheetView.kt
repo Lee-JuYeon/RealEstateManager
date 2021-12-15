@@ -21,8 +21,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
+import com.cavss.realestatemanager.ui.custom.popup.PopUpType
 import com.cavss.realestatemanager.ui.custom.popup.PopUpVM
 import com.cavss.realestatemanager.vm.MainVM
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -42,40 +44,38 @@ fun BottomSheetView(
 
         when(it){
             true -> {
-                bottomSheetState.hide()
+                bottomSheetScope.launch(Dispatchers.IO) {
+//                    bottomSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                    bottomSheetState.show()
+                }
             }
             false -> {
-
+                bottomSheetScope.launch(Dispatchers.IO) {
+//                    bottomSheetState.animateTo(ModalBottomSheetValue.Hidden)
+                    bottomSheetState.hide()
+                }
             }
         }
         Log.e("mException", "current value : ${bottomSheetState.currentValue}")
     }
 
-    bottomSheetScope.launch {
-
-    }
     if (isShow.value){
-        ModalBottomSheetLayout(
-            sheetBackgroundColor = Color.LightGray, // 시트 배경 색
-            sheetElevation = 5.dp,
-            sheetState = bottomSheetState,
-            sheetShape = RoundedCornerShape(
-                topStart = 30.dp,
-                topEnd = 30.dp
-            ),
-            scrimColor = Color.DarkGray.copy(0.5f), // 시트뷰 뒤의 배경색
-            sheetContent = {
-                BottomSheetItem()
+        when(mainVM.getBottomSheetType.value){
+            PopUpType.CHECKLIST_ITEM_IMAGE -> {
+                ModalBottomSheetLayout(
+                    sheetBackgroundColor = Color.LightGray, // 시트 배경 색
+                    sheetElevation = 5.dp,
+                    sheetState = bottomSheetState,
+                    sheetShape = RoundedCornerShape(
+                        topStart = 30.dp,
+                        topEnd = 30.dp
+                    ),
+                    scrimColor = Color.DarkGray.copy(0.5f), // 시트뷰 뒤의 배경색
+                    sheetContent = {
+                        BottomSheetItem()
+                    }
+                ) {}
             }
-        ) {
-//            Text(
-//                text = "배경",
-//                color = Color.Magenta,
-//                fontSize = 20.sp,
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .fillMaxHeight()
-//            )
         }
     }else{
         Log.e("mException","show? : ${mainVM.getBottomSheetShows.value}")
