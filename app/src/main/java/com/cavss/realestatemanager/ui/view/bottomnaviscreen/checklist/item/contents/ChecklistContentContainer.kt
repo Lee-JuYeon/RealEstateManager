@@ -1,4 +1,4 @@
-package com.cavss.realestatemanager.ui.view.checklist.item.contents
+package com.cavss.realestatemanager.ui.view.bottomnaviscreen.checklist.item.contents
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
@@ -6,14 +6,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.cavss.realestatemanager.R
 
 @Composable
-fun ChecklistContainer(
+fun ChecklistContentContainer(
     emoji : String,
     title : String,
     content : @Composable () -> Unit
@@ -24,7 +22,7 @@ fun ChecklistContainer(
         horizontalAlignment = Alignment.Start,
         modifier = Modifier
             .padding(
-                start = 10.dp,
+                start = 40.dp,
                 end = 5.dp,
                 bottom = 10.dp
             )
