@@ -1,4 +1,4 @@
-package com.cavss.realestatemanager.ui.view.checklist.optionview
+package com.cavss.realestatemanager.ui.custom.bottomnavi
 
 import com.cavss.realestatemanager.R
 
