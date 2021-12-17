@@ -1,4 +1,4 @@
-package com.cavss.realestatemanager.ui.view.checklist.item.contents
+package com.cavss.realestatemanager.ui.view.bottomnaviscreen.checklist.item.contents
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,14 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.cavss.realestatemanager.R
 
 @Composable
-fun ChecklistRelativeTrick(relativeTricks : List<String>) {
+fun ChecklistContentViewNeedToCheck(relativeTricks : List<String>) {
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start,
@@ -25,11 +23,11 @@ fun ChecklistRelativeTrick(relativeTricks : List<String>) {
                 end = 5.dp
             )
     ) {
-        relativeTricks.forEachIndexed { index : Int, situation : String->
+        relativeTricks.forEachIndexed { index : Int, checking : String->
             Text(
-                text = "• $situation",
-                fontWeight = FontWeight.Bold,
+                text = "${index + 1}. $checking",
                 fontSize = 20.sp,
+                fontWeight = FontWeight.SemiBold,
                 color = Color.Black,
                 modifier = Modifier
             )
