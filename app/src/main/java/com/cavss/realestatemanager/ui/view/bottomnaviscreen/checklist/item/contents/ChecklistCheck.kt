@@ -1,7 +1,5 @@
-package com.cavss.realestatemanager.ui.view.checklist.item.contents
+package com.cavss.realestatemanager.ui.view.bottomnaviscreen.checklist.item.contents
 
-import android.util.Log
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
