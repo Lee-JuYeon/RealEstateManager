@@ -1,4 +1,4 @@
-package com.cavss.realestatemanager.ui.view.checklist.item.contents
+package com.cavss.realestatemanager.ui.view.bottomnaviscreen.checklist.item.contents
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -17,10 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.cavss.realestatemanager.ui.custom.popup.PopUpType
+import com.cavss.realestatemanager.vm.MainVM
 
 @Composable
-fun ChecklistImage(
-    images : List<String>
+fun ChecklistContentViewImage(
+    images : List<String>,
+    mainVM : MainVM
 ) {
     val showBottomSheet = remember { mutableStateOf(false) }
     LazyRow(
@@ -51,6 +54,9 @@ fun ChecklistImage(
                     )
                     .clickable {
                         showBottomSheet.value = !showBottomSheet.value
+                        mainVM.setCheckListImages(images)
+                        mainVM.setBottomSheetShows(true)
+                        mainVM.setBottomSheetType(PopUpType.CHECKLIST_ITEM_IMAGE)
                     }
             )
         }
