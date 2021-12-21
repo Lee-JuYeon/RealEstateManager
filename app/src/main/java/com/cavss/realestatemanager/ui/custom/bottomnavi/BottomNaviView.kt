@@ -7,20 +7,22 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.cavss.realestatemanager.model.BottomNaviModel
 
 @Composable
 fun BottomNaviView(
     setNaviController : NavHostController,
-    setHeight : Dp
+    setHeight : Dp,
+    setTopRadius : Dp
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -31,7 +33,16 @@ fun BottomNaviView(
             .border(
                 3.dp,
                 Color.Black,
-                RectangleShape
+                RoundedCornerShape(
+                    topStart = setTopRadius,
+                    topEnd = setTopRadius
+                )
+            )
+            .clip(
+                RoundedCornerShape(
+                    topStart = setTopRadius,
+                    topEnd = setTopRadius
+                )
             )
             .padding(
                 vertical = 5.dp
