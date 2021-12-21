@@ -1,4 +1,4 @@
-package com.cavss.realestatemanager.ui.custom.tablayout
+package com.cavss.realestatemanager.model
 
 import com.cavss.realestatemanager.R
 
