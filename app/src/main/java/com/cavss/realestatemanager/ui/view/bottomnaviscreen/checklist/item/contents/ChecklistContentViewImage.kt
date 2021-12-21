@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.cavss.realestatemanager.ui.custom.popup.PopUpType
+import com.cavss.realestatemanager.model.type.PopUpType
 import com.cavss.realestatemanager.vm.MainVM
 
 @Composable
