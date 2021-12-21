@@ -1,6 +1,7 @@
-package com.cavss.realestatemanager.ui.custom.bottomnavi
+package com.cavss.realestatemanager.model
 
 import com.cavss.realestatemanager.R
+import com.cavss.realestatemanager.model.type.BottomNaviType
 
 sealed class BottomNaviModel(
     val type : BottomNaviType,
