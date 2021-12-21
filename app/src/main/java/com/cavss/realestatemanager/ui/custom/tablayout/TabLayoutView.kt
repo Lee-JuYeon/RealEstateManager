@@ -4,16 +4,26 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
-import androidx.navigation.compose.rememberNavController
+import com.cavss.realestatemanager.model.TabLayoutModel
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.PagerScope
+import com.google.accompanist.pager.rememberPagerState
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TabLayoutView(
-    setTabLayoutModelList : List<TabLayoutModel>,
     setHeight : Dp,
-    setExtraLayout : @Composable () -> Unit
+    setExtraLayout : @Composable () -> Unit,
+    setTabHeaderList : List<TabLayoutModel>,
+    setTabHeaderBackgroundColour : Color,
+    setTabHeaderIndicatorColour : Color,
+    setTabHeaderLayout :  @Composable (Modifier, Boolean, TabLayoutModel) -> Unit,
+    setTabBodyScrollable : Boolean,
+    setTabBodyLayout : @Composable PagerScope.(page: Int) -> Unit
 ) {
-    val navController = rememberNavController()
+    val pageState = rememberPagerState(pageCount = setTabHeaderList.size)
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -24,12 +34,20 @@ fun TabLayoutView(
         setExtraLayout()
 
         TabLayoutHeaader(
-            setNavController = navController,
-            setTabLayoutModelList = setTabLayoutModelList
+            setPagerState = pageState,
+            setBackgroundColor = setTabHeaderBackgroundColour,
+            setIndicatorColor = setTabHeaderIndicatorColour,
+            setTabHeaderList = setTabHeaderList,
+            setTabHeaderLayout = { clickEvent : Modifier, isClicked : Boolean, model : TabLayoutModel ->
+                setTabHeaderLayout(clickEvent, isClicked, model)
+            }
         )
+
         TabLayoutBody(
-            setNavController = navController,
-            setBodyModelList = setTabLayoutModelList
-        )
+            setPagerState = pageState,
+            setScrollable = setTabBodyScrollable
+        ) {
+            setTabBodyLayout(this.currentPage)
+        }
     }
 }
