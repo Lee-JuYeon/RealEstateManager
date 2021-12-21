@@ -1,6 +1,7 @@
-package com.cavss.realestatemanager.ui.custom.topbar
+package com.cavss.realestatemanager.model
 
 import com.cavss.realestatemanager.R
+import com.cavss.realestatemanager.model.type.TopBarType
 
 sealed class TopBarModel(
     val itemType : TopBarType,

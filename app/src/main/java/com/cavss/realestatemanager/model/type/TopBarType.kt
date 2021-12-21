@@ -1,4 +1,4 @@
-package com.cavss.realestatemanager.ui.custom.topbar
+package com.cavss.realestatemanager.model.type
 
 enum class TopBarType{
     NONE,
