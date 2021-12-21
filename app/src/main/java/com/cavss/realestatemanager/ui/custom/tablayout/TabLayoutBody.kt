@@ -1,45 +1,29 @@
 package com.cavss.realestatemanager.ui.custom.tablayout
 
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.Alignment
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.cavss.realestatemanager.model.TabLayoutModel
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.PagerScope
+import com.google.accompanist.pager.PagerState
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TabLayoutBody(
-    setNavController : NavHostController,
-    setBodyModelList : List<TabLayoutModel>
+    setPagerState : PagerState,
+    setScrollable : Boolean,
+    setBodyContent : @Composable PagerScope.(page: Int) -> Unit
 ) {
-
-    NavHost(
-        navController = setNavController,
-        startDestination = TabLayoutModel.JEONSE.route
+    HorizontalPager(
+        state = setPagerState,
+        dragEnabled = setScrollable,
+        verticalAlignment = Alignment.Top,
+        horizontalAlignment = Alignment.Start
     ) {
-        setBodyModelList.forEach { model ->
-            composable(route = model.route) {
-                Text(
-                    text = stringResource(id = model.title),
-                    color = Color.Black,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .border(
-                            1.dp,
-                            Color.Black,
-                            RectangleShape
-                        )
-                )
-//                setBodyLayoutList
-            }
-        }
+        setBodyContent(this.currentPage)
     }
-
 }
