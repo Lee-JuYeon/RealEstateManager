@@ -1,4 +1,4 @@
-package com.cavss.realestatemanager.ui.custom.bottomnavi
+package com.cavss.realestatemanager.model.type
 
 enum class BottomNaviType(val rawValue : String) {
     CHECKLIST(rawValue = "CHECKLIST"),
