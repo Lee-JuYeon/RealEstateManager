@@ -1,4 +1,4 @@
-package com.cavss.realestatemanager.ui.custom.adview
+package com.cavss.realestatemanager.model.type
 
 enum class CustomAdViewType(val rawValue : String) {
     NOINTERNET(rawValue = "NOINTERNET"),

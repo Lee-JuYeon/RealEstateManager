@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cavss.realestatemanager.R
+import com.cavss.realestatemanager.model.type.CustomAdViewType
 import com.cavss.realestatemanager.util.internet.InternetManager
 
 @Composable
