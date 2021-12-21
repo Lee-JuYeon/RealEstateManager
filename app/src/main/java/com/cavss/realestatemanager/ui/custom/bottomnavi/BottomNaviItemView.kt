@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.cavss.realestatemanager.model.BottomNaviModel
+import com.cavss.realestatemanager.model.type.BottomNaviType
 
 
 @Composable
