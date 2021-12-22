@@ -1,4 +1,4 @@
-package com.cavss.realestatemanager.ui.view.bottomnaviscreen.checklist.item
+package com.cavss.realestatemanager.ui.view.main.checklist.item
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearEasing
@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.cavss.realestatemanager.R
 import com.cavss.realestatemanager.model.CheckListModel
-import com.cavss.realestatemanager.ui.view.bottomnaviscreen.checklist.item.contents.*
+import com.cavss.realestatemanager.ui.view.main.checklist.item.contents.*
 import com.cavss.realestatemanager.vm.CheckListVM
 import com.cavss.realestatemanager.vm.MainVM
 

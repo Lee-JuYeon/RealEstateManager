@@ -1,4 +1,4 @@
-package com.cavss.realestatemanager.ui.view.bottomnaviscreen.checklist
+package com.cavss.realestatemanager.ui.view.main.checklist
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -10,7 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.cavss.realestatemanager.model.CheckListModel
 import com.cavss.realestatemanager.model.type.CheckListType
-import com.cavss.realestatemanager.ui.view.bottomnaviscreen.checklist.item.CheckListItem
+import com.cavss.realestatemanager.ui.custom.bottomsheet.BottomSheetVM
+import com.cavss.realestatemanager.ui.view.main.checklist.item.CheckListItem
 import com.cavss.realestatemanager.util.checklist.CheckListData
 import com.cavss.realestatemanager.vm.CheckListVM
 import com.cavss.realestatemanager.vm.MainVM
@@ -36,7 +37,6 @@ fun CheckListView(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start,
         modifier = Modifier
-            .background(Color.White)
             .fillMaxHeight(),
         content = {
             itemsIndexed(typeFilteredCheckList){ currentPosition : Int, model : CheckListModel->

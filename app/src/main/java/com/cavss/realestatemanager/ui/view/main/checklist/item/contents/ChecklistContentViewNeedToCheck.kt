@@ -1,4 +1,4 @@
-package com.cavss.realestatemanager.ui.view.bottomnaviscreen.checklist.item.contents
+package com.cavss.realestatemanager.ui.view.main.checklist.item.contents
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
