@@ -1,5 +1,6 @@
 package com.cavss.realestatemanager.ui.custom.bottomnavi
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,9 +14,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.cavss.realestatemanager.R
 import com.cavss.realestatemanager.model.BottomNaviModel
 
 @Composable
@@ -30,28 +33,26 @@ fun BottomNaviView(
         modifier = Modifier
             .fillMaxWidth()
             .height(setHeight)
-            .border(
-                3.dp,
-                Color.Black,
-                RoundedCornerShape(
-                    topStart = setTopRadius,
-                    topEnd = setTopRadius
-                )
-            )
             .clip(
                 RoundedCornerShape(
                     topStart = setTopRadius,
                     topEnd = setTopRadius
                 )
             )
-            .padding(
-                vertical = 5.dp
-            ),
+            .border(
+                1.dp,
+                colorResource(id = R.color.lightWood),
+                RoundedCornerShape(
+                    topStart = setTopRadius,
+                    topEnd = setTopRadius
+                )
+            )
+            .background(colorResource(id = R.color.darkWood)),
         content = {
             items(BottomNaviModel.BOTTOM_NAVI_LIST.list){ model ->
                 BottomNaviItemView(
                     setModel = model,
-                    setColour = Color.Black,
+                    setColour = Color.White,
                     setNavController = setNaviController
                 )
             }
