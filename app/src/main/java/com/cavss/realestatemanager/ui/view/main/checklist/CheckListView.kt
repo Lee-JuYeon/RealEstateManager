@@ -20,7 +20,8 @@ import com.cavss.realestatemanager.vm.MainVM
 fun CheckListView(
     setMainVM : MainVM,
     setCheckListVM : CheckListVM,
-    setType : CheckListType
+    setType : CheckListType,
+    setBottomSheetVM : BottomSheetVM
 ){
     val typeFilteredCheckList : List<CheckListModel> = when(setType){
         CheckListType.BUY -> {
@@ -44,7 +45,8 @@ fun CheckListView(
                     model = model,
                     index = currentPosition,
                     checkListVM = setCheckListVM,
-                    mainVM = setMainVM
+                    mainVM = setMainVM,
+                    setBottomSheetVM = setBottomSheetVM
                 )
             }
         }

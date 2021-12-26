@@ -1,5 +1,6 @@
 package com.cavss.realestatemanager.ui.view.main.checklist.item.contents
 
+import android.util.Log
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -18,25 +19,39 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.cavss.realestatemanager.model.type.PopUpType
+import com.cavss.realestatemanager.ui.custom.bottomsheet.BottomSheetType
+import com.cavss.realestatemanager.ui.custom.bottomsheet.BottomSheetVM
 import com.cavss.realestatemanager.vm.MainVM
+
+/*
+TODO : 이미지를 더블클릭해야 바텀시트가 올라감
+ */
 
 @Composable
 fun ChecklistContentViewImage(
     images : List<String>,
-    mainVM : MainVM
+    setBottomSheetVM : BottomSheetVM
 ) {
-    val showBottomSheet = remember { mutableStateOf(false) }
     LazyRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start,
         modifier = Modifier
+            .clickable {
+                try {
+                    setBottomSheetVM.let {
+                        it.setBottomSheetType(BottomSheetType.CHECKLIST_PICTURES)
+                        it.setBottomSheetShows(true)
+                    }
+                }catch (e:Exception){
+                    Log.e("mException", "ChecklistContentViewImage, while clicking // Exception : ${e.message}")
+                }finally {
+                    Log.e("mException", "ChecklistContentViewImage, clicked ")
+                }
+            }
             .padding(
                 start = 30.dp,
                 end = 5.dp
             )
-            .clickable {
-
-            }
     ){
         items(images){ image ->
             Text(
@@ -52,12 +67,6 @@ fun ChecklistContentViewImage(
                         Color.Black,
                         RoundedCornerShape(5.dp)
                     )
-                    .clickable {
-                        showBottomSheet.value = !showBottomSheet.value
-                        mainVM.setCheckListImages(images)
-                        mainVM.setBottomSheetShows(true)
-                        mainVM.setBottomSheetType(PopUpType.CHECKLIST_ITEM_IMAGE)
-                    }
             )
         }
     }

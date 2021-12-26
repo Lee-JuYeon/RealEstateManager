@@ -16,6 +16,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.cavss.realestatemanager.R
 import com.cavss.realestatemanager.model.CheckListModel
+import com.cavss.realestatemanager.ui.custom.bottomsheet.BottomSheetType
+import com.cavss.realestatemanager.ui.custom.bottomsheet.BottomSheetVM
 import com.cavss.realestatemanager.ui.view.main.checklist.item.contents.*
 import com.cavss.realestatemanager.vm.CheckListVM
 import com.cavss.realestatemanager.vm.MainVM
@@ -25,7 +27,8 @@ fun CheckListItem(
     model : CheckListModel,
     index : Int,
     checkListVM : CheckListVM,
-    mainVM : MainVM
+    mainVM : MainVM,
+    setBottomSheetVM : BottomSheetVM
 ){
     val isExpandable = remember { mutableStateOf(false) }
     Column(
@@ -67,7 +70,7 @@ fun CheckListItem(
                 emoji = "📷",
                 title = stringResource(id = R.string.checkList_imageTitle)
             ) {
-                ChecklistContentViewImage(model.images, mainVM)
+                ChecklistContentViewImage(model.images, setBottomSheetVM)
             }
         }
         Divider(
